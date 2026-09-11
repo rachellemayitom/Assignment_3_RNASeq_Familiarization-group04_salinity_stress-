@@ -1,1 +1,103 @@
+# TRAYVILLA_assignment_02_genome_exploration
+
+**Name:** Trayvilla, Shekhan Fredianne C.
+
+**Activity Title:** Basic Genome Structure and Sequence Exploration Using Galaxy
+**BIO 300 – A Cell and Molecular Biology Laboratory**
+
+**Species:** *Anas strepera* (gadwall) genome assembly (**GCA_965278785.1**)
+
+## Objectives
+
+To describe the structure of a genome assembly using basic statistics, sequence-length filtering, and a small-scale open reading frame (ORF) exploration and learning to inspect and interpret an assembled genome.
+
+## Tools used in Galaxy
+
+### Part 1 — Genome Download
+
+**Source:** NCBI FTP
+**File:** GCA_965278785.1 genomic FASTA
+**Renamed in Galaxy to:** `Anas_strepera_genome_original.fna.gz`
+
+### Part 2 — Assembly Statistics
+
+**Tool:** gfastats
+**Tool mode:** Summary statistics generation
+**Report mode:** Genome assembly statistics (--nstar-report)
+**Input file:** 1: `Anas_strepera_genome_original.fna.gz`
+**Output renamed to:** `Anas_strepera_Assembly_Statistics_gfastats`
+
+**Assembly statistics:**
+
+* Total scaffold length: **1,300,614,387 bp**
+* Number of scaffolds: **1,156**
+* Average scaffold length: **1,125,098.95 bp**
+* Maximum scaffold length: **205,626,557 bp**
+* Scaffold N50: **66,097,916 bp**
+* Scaffold L50: **6**
+* GC content: **42.39%**
+* Number of contigs: **2,005**
+* Contig N50: **2,097,805 bp**
+* Contig L50: **172**
+
+### Part 3 — Sequence-Length Structure
+
+**Tool:** Compute sequence length
+**Input file:** 1: `Anas_strepera_genome_original.fna.gz`
+**Setting:** "Strip fasta description from header?" = Yes
+**Output:** Compute sequence length on dataset 1
+
+Sorted using Galaxy's Sort tool **(column 2, descending)** to identify the top 5 longest sequences.
+
+**Top 5 longest sequences:**
+
+1. **CBDIHC010000001.1** — 205,626,557 bp
+2. **CBDIHC010000002.1** — 120,843,211 bp
+3. **CBDIHC010000003.1** — 108,571,346 bp
+4. **CBDIHC010000004.1** — 97,624,830 bp
+5. **CBDIHC010000005.1** — 89,316,442 bp
+
+### Part 4 — Length-Filtering Experiment
+
+**Step 1**
+
+**Tool:** Filter sequences by length
+**Input file:** 1: `Anas_strepera_genome_original.fna.gz`
+**Parameter:** minimum length = **10,000 bp (10 kb)**
+**Output renamed to:** `Anas_strepera_filtered_10kb`
+
+**Step 2**
+
+Re-ran gfastats (same settings as Part 2) using input file:
+
+**5: `Anas_strepera_filtered_10kb`**
+
+**Output renamed to:** `Anas_strepera_Filtered_10kb_Assembly_Statistics_gfastats`
+
+### Part 5 — Small ORF Exploration
+
+**Step 1**
+
+**Tool:** Filter sequences by ID from a tabular file
+**Input file:** 1: `Anas_strepera_genome_original.fna.gz`
+**Filter using ID list from:** "provided list"
+**My ID:** **CBDIHC010000986.1 (20,507 bp)**
+**Output:** "Positive matches only"
+**Output renamed to:** `Anas_strepera_genome_original.fna uncompressed with matched ID`
+
+**Step 2**
+
+**Tool:** getorf
+**Input file:** `Anas_strepera_genome_original.fna uncompressed with matched ID`
+**Minimum nucleotide size of ORF to report:** 300
+**What to output:** Translation of regions between STOP codons
+**All START codons to code for Methionine:** Yes
+**Circular sequence:** No
+**Output:** `Anas_strepera_getorf.fasta`
+
+**ORF OUTPUT:** CBDIHC010000986.1 ; 9 ; 1,248 bp ; Anas_strepera_getorf.fasta
+
+## Short Interpretation
+
+The *Anas strepera* genome assembly has a total length of about **1.30 Gb** distributed across **1,156 scaffolds**. The assembly contains several long scaffolds, with the largest reaching about **205.6 Mb**, showing that much of the genome is represented by relatively long sequences. The GC content is **42.39%**. After filtering sequences shorter than 10 kb, the shorter sequences were removed, giving a more focused representation of the larger scaffolds. The ORF exploration returned **9 ORFs** from the selected sequence, with the longest ORF being **1,248 bp**. These predicted ORFs may represent possible protein-coding regions, but further evidence would be needed to confirm that they are functional genes.
 
