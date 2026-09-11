@@ -35,57 +35,46 @@ Total scaffold length: 1,300,614,387 bp
 **Setting:** "Strip fasta description from header?" = Yes
 **Output:** Compute sequence length on dataset 1
 
-Sorted using Galaxy's Sort tool **(column 2, descending)** to identify the top 5 longest sequences.
+Sorted using Galaxy's Sort tool (column 2, descending) to identify the top 5 longest sequences.
+Top 5 longest sequences:
 
-**Top 5 longest sequences:**
-
-1. **CBDIHC010000001.1** — 205,626,557 bp
-2. **CBDIHC010000002.1** — 120,843,211 bp
-3. **CBDIHC010000003.1** — 108,571,346 bp
-4. **CBDIHC010000004.1** — 97,624,830 bp
-5. **CBDIHC010000005.1** — 89,316,442 bp
-
-### Part 4 — Length-Filtering Experiment
-
-**Step 1**
-
-**Tool:** Filter sequences by length
-**Input file:** 1: `Anas_strepera_genome_original.fna.gz`
-**Parameter:** minimum length = **10,000 bp (10 kb)**
-**Output renamed to:** `Anas_strepera_filtered_10kb`
-
-**Step 2**
+1. CBDIHC010000001.1 — 205,626,557 bp
+2. CBDIHC010000002.1 — 120,843,211 bp
+3. CBDIHC010000003.1 — 108,571,346 bp
+4. CBDIHC010000004.1 — 97,624,830 bp
+5. CBDIHC010000005.1 — 89,316,442 bp
+Part 4 — Length-Filtering Experiment
+Step 1
+Tool: Filter sequences by length
+Input file: 1: `Anas_strepera_genome_original.fna.gz`
+Parameter: minimum length = 10,000 bp (10 kb)
+Output renamed to: `Anas_strepera_filtered_10kb`
+Step 2
 
 Re-ran gfastats (same settings as Part 2) using input file:
 
-**5: `Anas_strepera_filtered_10kb`**
+5: `Anas_strepera_filtered_10kb`
+Output renamed to: `Anas_strepera_Filtered_10kb_Assembly_Statistics_gfastat
+Part 5 — Small ORF Exploration
+Step 1
+Tool: Filter sequences by ID from a tabular file
+Input file: 1: `Anas_strepera_genome_original.fna.gz`
+Filter using ID list from: "provided list"
+My ID:CBDIHC010000986.1 (20,507 bp)
+Output: "Positive matches only"
+Output renamed to: `Anas_strepera_genome_original.fna uncompressed with matched ID`
+Step 2
+Tool: getorf
+Input file: `Anas_strepera_genome_original.fna uncompressed with matched ID`
+Minimum nucleotide size of ORF to report: 300
+What to output: Translation of regions between STOP codons
+All START codons to code for Methionine: Yes
+Circular sequence: No
+Output:`Anas_strepera_getorf.fasta`
 
-**Output renamed to:** `Anas_strepera_Filtered_10kb_Assembly_Statistics_gfastats`
+ORF OUTPUT: CBDIHC010000986.1 ; 9 ; 1,248 bp ; Anas_strepera_getorf.fasta
 
-### Part 5 — Small ORF Exploration
+Short Interpretation
 
-**Step 1**
-
-**Tool:** Filter sequences by ID from a tabular file
-**Input file:** 1: `Anas_strepera_genome_original.fna.gz`
-**Filter using ID list from:** "provided list"
-**My ID:** **CBDIHC010000986.1 (20,507 bp)**
-**Output:** "Positive matches only"
-**Output renamed to:** `Anas_strepera_genome_original.fna uncompressed with matched ID`
-
-**Step 2**
-
-**Tool:** getorf
-**Input file:** `Anas_strepera_genome_original.fna uncompressed with matched ID`
-**Minimum nucleotide size of ORF to report:** 300
-**What to output:** Translation of regions between STOP codons
-**All START codons to code for Methionine:** Yes
-**Circular sequence:** No
-**Output:** `Anas_strepera_getorf.fasta`
-
-**ORF OUTPUT:** CBDIHC010000986.1 ; 9 ; 1,248 bp ; Anas_strepera_getorf.fasta
-
-## Short Interpretation
-
-The *Anas strepera* genome assembly has a total length of about **1.30 Gb** distributed across **1,156 scaffolds**. The assembly contains several long scaffolds, with the largest reaching about **205.6 Mb**, showing that much of the genome is represented by relatively long sequences. The GC content is **42.39%**. After filtering sequences shorter than 10 kb, the shorter sequences were removed, giving a more focused representation of the larger scaffolds. The ORF exploration returned **9 ORFs** from the selected sequence, with the longest ORF being **1,248 bp**. These predicted ORFs may represent possible protein-coding regions, but further evidence would be needed to confirm that they are functional genes.
+The Anas strepera genome assembly has a total length of about 1.30 Gb distributed across 1,156 scaffolds. The assembly contains several long scaffolds, with the largest reaching about 205.6 Mb, showing that much of the genome is represented by relatively long sequences. The GC content is 42.39%. After filtering sequences shorter than 10 kb, the shorter sequences were removed, giving a more focused representation of the larger scaffolds. The ORF exploration returned 9 ORFs from the selected sequence, with the longest ORF being 1,248 bp. These predicted ORFs may represent possible protein-coding regions, but further evidence would be needed to confirm that they are functional genes.
 
