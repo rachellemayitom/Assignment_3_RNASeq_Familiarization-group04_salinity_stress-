@@ -1,35 +1,23 @@
-# TRAYVILLA_assignment_02_genome_exploration
-
-**Name:** Trayvilla, Shekhan Fredianne C.
-
-**Activity Title:** Basic Genome Structure and Sequence Exploration Using Galaxy
-**BIO 300 – A Cell and Molecular Biology Laboratory**
-
-**Species:** *Anas strepera* (gadwall) genome assembly (**GCA_965278785.1**)
-
-## Objectives
-
+TRAYVILLA_assignment_02_genome_exploration
+Name: Trayvilla, Shekhan Fredianne C.
+Activity Title: Basic Genome Structure and Sequence Exploration Using Galaxy
+BIO 300 – A Cell and Molecular Biology Laboratory
+Species:Anas strepera (gadwall) genome assembly (GCA_965278785.1)
+Objectives
 To describe the structure of a genome assembly using basic statistics, sequence-length filtering, and a small-scale open reading frame (ORF) exploration and learning to inspect and interpret an assembled genome.
-
-## Tools used in Galaxy
-
-### Part 1 — Genome Download
-
-**Source:** NCBI FTP
-**File:** GCA_965278785.1 genomic FASTA
-**Renamed in Galaxy to:** `Anas_strepera_genome_original.fna.gz`
-
-### Part 2 — Assembly Statistics
-
-**Tool:** gfastats
-**Tool mode:** Summary statistics generation
-**Report mode:** Genome assembly statistics (--nstar-report)
-**Input file:** 1: `Anas_strepera_genome_original.fna.gz`
-**Output renamed to:** `Anas_strepera_Assembly_Statistics_gfastats`
-
-**Assembly statistics:**
-
-* Total scaffold length: **1,300,614,387 bp**
+Tools used in Galaxy
+Part 1 — Genome Download
+Source: NCBI FTP
+File: GCA_965278785.1 genomic FASTA
+Renamed in Galaxy to: `Anas_strepera_genome_original.fna.gz`
+Part 2 — Assembly Statistics
+Tool: gfastats
+Tool mode: Summary statistics generation
+Report mode:Genome assembly statistics (--nstar-report)
+Input file: 1: `Anas_strepera_genome_original.fna.gz`
+Output renamed to: `Anas_strepera_Assembly_Statistics_gfastats`
+Assembly statistics:
+Total scaffold length: 1,300,614,387 bp
 * Number of scaffolds: **1,156**
 * Average scaffold length: **1,125,098.95 bp**
 * Maximum scaffold length: **205,626,557 bp**
